@@ -16,13 +16,15 @@ evaluation = true
           evaluation = false
         elsif num <= 3
           evaluation = true
-        elsif num % 2 == 0 || num % 3 == 0
+        elsif num % 2 == 0 ||
+          num % 3 == 0
           evaluation = false
         else
           #test 6n [plus or minus] 1. --smaller set of numbers, commonly primes
           while (factor * factor) < num do
-            binding.pry
-            if num % (factor + 1) == 0 || num % (factor - 1) == 0
+            # binding.pry
+            if num % (factor + 1) == 0 ||
+              num % (factor - 1) == 0
               evaluation = false
             end
             factor += base
@@ -38,23 +40,23 @@ evaluation = true
 
         if num <= 1
           evaluation = false
-        end
+        else
           #test 6n [plus or minus] 1. --smaller set of numbers, commonly primes
-        while num % 2 != 0 &&
-          num % 3 != 0 &&
-          num % (factor + 1) != 0 &&
-          num % (factor - 1) != 0 &&
-          (factor - 1) <= Math.sqrt(num) do
-
-            factor += base
-        end
-
-          # breaking loop means num divides cleanly
-          if (factor - 1) <= Math.sqrt(num)
-            evaluation = false
-          else
-            evaluation = true
+          while num % 2 != 0 &&
+            num % 3 != 0 &&
+            num % (factor + 1) != 0 &&
+            num % (factor - 1) != 0 &&
+            (factor - 1) <= Math.sqrt(num) do
+              factor += base
           end
+
+            # breaking loop means num divides cleanly
+            if (factor - 1) <= Math.sqrt(num) || num == 4
+              evaluation = false
+            else
+              evaluation = true
+            end
+        end
     end
     end
 
